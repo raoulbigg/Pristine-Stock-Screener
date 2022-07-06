@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+import sys
 from EdgeWatch.marketoverview import get_stocks_day_performance
-from EdgeWatch.forex_data.fetch_forex_data import ForexData
+from EdgeWatch.ohlc.fetch_ohlc import StockData
 from EdgeWatch.pattern_elements.calculate_simplemas import *
 from EdgeWatch.pattern_elements.calc_pop import *
 from EdgeWatch.pattern_elements.calculate_priceaction import *
@@ -28,38 +29,38 @@ class Screener(object):
 		self.tickers = tickers
 		self.timeframe = timeframe
 
-	def start_forex_screener(self):
+	def start_stock_screener(self):
 		now = datetime.datetime.now()
+		trade_hours = [16, 17, 18]
 		while 1 > 0:
 			screen = False
-			if self.timeframe == "30m":
-				if now.now().minute == 25 or now.now().minute == 55:
-					screen = self.forexScreener()
-			if self.timeframe == "15m":
-				if now.now().minute == 13 or now.now().minute == 28 or now.now().minute == 43 or now.now().minute == 58:
-					screen = self.forexScreener()	
+			if self.timeframe == "1d":
+				screen = self.stockScreener()
+				sys.exit()
 			if self.timeframe == "1h":
-				if now.now().minute == 2:
-					screen = self.forexScreener()
+				if now.now().hour in trade_hours and now.now().minute == 15:
+					screen = self.stockScreener()
 			if screen:
 				print('----------')
-				time.sleep(60)
-
+				time.sleep(50)
 		time.sleep(3)
 
 
-	def forexScreener(self):
+	def stockScreener(self):
 		#Fetch historical and live forex OHLC
-		fx = ForexData()
-		print("Fetching OHLC data and screening for edge on ", self.timeframe)
+		ohlc = StockData()
+		print("Fetching OHLC data and screening for edge on", self.timeframe)
 		for ticker in self.tickers:
-			data = fx.get_forex_data(ticker, self.timeframe)
-			#Calc simple moving averages (8, 20 and 50)
-			complete_data = calc_smas(data)
-			#Calculate the picture of power
-			pop = calc_picture_of_power(complete_data)
-			if pop:
-				potential_trade = calc_bars_positions(complete_data)
-				if potential_trade:
-					print("Potential trade found: ", ticker, potential_trade)
+			try:
+				data = ohlc.get_ohlc_data(ticker, self.timeframe)
+				#Calc simple moving averages (8, 20 and 50)
+				complete_data = calc_smas(data)
+				#Calculate the picture of power
+				pop = calc_picture_of_power(complete_data)
+				if pop:
+					potential_trade = calc_bars_positions(complete_data, pop)
+					if potential_trade:
+						print("\x1b[33;20m Potential trade found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
+			except (AttributeError, IndexError) as e:
+				pass
 		return 1

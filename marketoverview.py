@@ -4,5 +4,5 @@ from EdgeWatch.edgewatch import *
 Marketoverview = MarketOverview().todays_markets_overview()
 
 #Screening for edge
-forex_pairs = open('forexpairs.txt','r').readlines()
-screener = Screener(tickers=forex_pairs, timeframe="1h").start_forex_screener()
+pairs = open('pairs.txt','r').readlines()
+screener = Screener(tickers=pairs, timeframe="1h").start_stock_screener()
