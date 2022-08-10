@@ -8,6 +8,7 @@ from EdgeWatch.pattern_elements.calc_pop import *
 from EdgeWatch.pattern_elements.calculate_priceaction import *
 import datetime
 import time
+import json
 
 class MarketOverview(object):
 
@@ -16,7 +17,7 @@ class MarketOverview(object):
 		stocks_gainers = get_stocks_day_performance.get_stock_gainers()
 		stocks_losers = get_stocks_day_performance.get_stock_losers()
 		#Print columns with the market overview
-		print('''\nMarket overview:\n-------------\n''')
+		print('''\n\033[1;36;40m Market overview: \033[0m\n-------------\n''')
 		print("Stocks:")
 		print('{:16s}    {}\n'.format("Top gainers:", "Top losers:"))
 		print("\n".join("{:25s}    {}".format(x, y) for x, y in zip(stocks_gainers, stocks_losers)))
@@ -30,37 +31,53 @@ class Screener(object):
 		self.timeframe = timeframe
 
 	def start_stock_screener(self):
-		now = datetime.datetime.now()
 		trade_hours = [16, 17, 18]
+		trade_hours2 = [20]
 		while 1 > 0:
+			now = datetime.datetime.now()
 			screen = False
 			if self.timeframe == "1d":
 				screen = self.stockScreener()
-				sys.exit()
 			if self.timeframe == "1h":
-				if now.now().hour in trade_hours and now.now().minute == 15:
+				if now.now().hour in trade_hours and now.now().minute == 12:
 					screen = self.stockScreener()
+				elif now.now().hour == 21 and now.now().minute == 10:
+					self.timeframe = "1d"
+					screen = self.stockScreener()
+			if self.timeframe == "15m":
+				if now.now().hour in trade_hours2 and now.now().minute % 15 == 0:
+					screen = self.stockScreener()
+
 			if screen:
+				jsonD = json.dumps({self.timeframe: {"tickers": screen, "end_time": str(now)}})
+				jsonFile = open("potential_trades.json", "w")
+				jsonFile.write(jsonD)
+				jsonFile.close()
 				print('----------')
+				if self.timeframe == "1d":
+					sys.exit()
 				time.sleep(50)
 		time.sleep(3)
 
 
 	def stockScreener(self):
-		#Fetch historical and live forex OHLC
+		#Fetch historical and live stock OHLC
+		list_trades = []
 		ohlc = StockData()
-		print("Fetching OHLC data and screening for edge on", self.timeframe)
+		print("\033[1;36;40m Fetching OHLC data and screening for edge on", self.timeframe + "\033[0m")
 		for ticker in self.tickers:
 			try:
-				data = ohlc.get_ohlc_data(ticker, self.timeframe)
+				formatted_ticker = ticker.split(":")[1].strip()
+				data = ohlc.get_ohlc_data(formatted_ticker, self.timeframe)
 				#Calc simple moving averages (8, 20 and 50)
 				complete_data = calc_smas(data)
 				#Calculate the picture of power
 				pop = calc_picture_of_power(complete_data)
 				if pop:
-					potential_trade = calc_bars_positions(complete_data, pop)
+					potential_trade = calc_bars_positions(complete_data, pop, self.timeframe)
 					if potential_trade:
-						print("\x1b[33;20m Potential trade found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
-			except (AttributeError, IndexError) as e:
+						print("\033[1;33;40m Potential trade found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
+						list_trades.append(ticker.strip())
+			except (AttributeError, IndexError, UnboundLocalError) as e:
 				pass
-		return 1
+		return list_trades

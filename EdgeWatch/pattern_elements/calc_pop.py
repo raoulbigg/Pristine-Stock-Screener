@@ -12,10 +12,10 @@ def calc_picture_of_power(data):
 
 	#calc +POP
 	if short_sma > long_sma and medium_sma > long_sma and close > short_sma:
-		if medium_sma > medium_sma1 and close / medium_sma <= 1.4:
+		if medium_sma > medium_sma1 and close / medium_sma <= 1.2:
 			return "up"
 	#calc -POP
 	elif short_sma < long_sma and medium_sma < long_sma and close < short_sma:
-		if medium_sma < medium_sma1 and medium_sma / close <= 1.4:
+		if medium_sma < medium_sma1 and medium_sma / close <= 1.2:
 			return "down"
 	return

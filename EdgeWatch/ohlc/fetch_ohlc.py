@@ -17,6 +17,8 @@ class StockData(object):
             data = yf.Ticker(ticker.strip()).history(interval='1d', period='200d')
         elif interval == "1h":
             data = yf.Ticker(ticker.strip()).history(interval='1h', period='50d')
+        elif interval == "15m":
+            data = yf.Ticker(ticker.strip()).history(interval='15m', period='40d')
 
         try:
             return data
