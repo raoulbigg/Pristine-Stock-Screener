@@ -26,8 +26,10 @@ class MarketOverview(object):
 
 
 class Screener(object):
-	def __init__(self, tickers, timeframe):
+	def __init__(self, tickers, daily_tickers, timeframe):
+
 		self.tickers = tickers
+		self.daily_tickers = daily_tickers
 		self.timeframe = timeframe
 
 	def start_stock_screener(self):
@@ -65,7 +67,11 @@ class Screener(object):
 		list_trades = []
 		ohlc = StockData()
 		print("\033[1;36;40m Fetching OHLC data and screening for edge on", self.timeframe + "\033[0m")
-		for ticker in self.tickers:
+		if self.timeframe == "1d":
+			tickers = self.daily_tickers
+		elif self.timeframe == "1h":
+			tickers = self.tickers
+		for ticker in tickers:
 			try:
 				formatted_ticker = ticker.split(":")[1].strip()
 				data = ohlc.get_ohlc_data(formatted_ticker, self.timeframe)
