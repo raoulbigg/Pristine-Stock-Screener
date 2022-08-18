@@ -75,7 +75,7 @@ class Screener(object):
 			try:
 				formatted_ticker = ticker.split(":")[1].strip()
 				data = ohlc.get_ohlc_data(formatted_ticker, self.timeframe)
-				#Calc simple moving averages (8, 20 and 50)
+				#Calc simple moving averages (20, 50 and 200)
 				complete_data = calc_smas(data)
 				#Calculate the picture of power
 				pop = calc_picture_of_power(complete_data)
