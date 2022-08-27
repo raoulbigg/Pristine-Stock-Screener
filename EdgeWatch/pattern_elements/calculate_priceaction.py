@@ -14,22 +14,10 @@ def calc_bars_positions(data, pop, timeframe):
 
 
 	if pop == "up":
-		countUP = 0
-		for i in range(10):
-			if i != 0:
-				if current["Close"] > data.iloc[i]["Close"] and current["Close"] > data.iloc[i]["Open"]:
-					countUP = countUP + 1
-		if countUP >= 8:
-			if current["Close"] > current["Open"] and current["Close"] > barTwo["Close"] and barTwo["Close"] < barThree["Close"] and barTwo["Close"] < barThree["Open"]:
-				return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
+		if current["Close"] > current["Open"] and current["Close"] > barTwo["Close"] and barTwo["Close"] < barThree["Close"] and barTwo["Close"] < barThree["Open"]:
+			return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
 
 
 	if pop == "down":
-		countDOWN = 0
-		for i in range(10):
-			if i != 0:
-				if current["Close"] < data.iloc[i]["Close"] and current["Close"] < data.iloc[i]["Open"]:
-					countDOWN = countDOWN + 1
-		if countDOWN >= 8:
-			if current["Close"] < current["Open"] and current["Close"] < barTwo["Close"] and barTwo["Close"] > barThree["Close"] and barTwo["Close"] > barThree["Open"]:
-				return "180bar:",current["Close"], "barTwo:", barTwo["Close"], barTwo["Open"], "barThree:", barThree["Close"], "barFour:", barFour["Close"]
+		if current["Close"] < current["Open"] and current["Close"] < barTwo["Close"] and barTwo["Close"] > barThree["Close"] and barTwo["Close"] > barThree["Open"]:
+			return "180bar:",current["Close"], "barTwo:", barTwo["Close"], barTwo["Open"], "barThree:", barThree["Close"], "barFour:", barFour["Close"]
