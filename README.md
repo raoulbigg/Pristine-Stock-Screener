@@ -3,7 +3,7 @@
 ###### Personal stock/forex/commodity/crypto screener that:
 
 
-- Receives **live** and **past** OHLC data for middle to high volume (500k+) stocks using Yahoo yfinance lib.
+- Receives **live** and **past** OHLC data for stocks using Yahoo yfinance lib.
 - calculates moving averages, bars position and moving average distance for each stock. 
 - Generates a watchlist.txt file to import in TradingView
 
