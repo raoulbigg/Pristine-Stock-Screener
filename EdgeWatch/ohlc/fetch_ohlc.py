@@ -14,12 +14,7 @@ class StockData(object):
     def get_ohlc_data(self, ticker, interval):
         data = []
         if interval == "1d":
-            data = yf.Ticker(ticker.strip()).history(interval='1d', period='200d')
-        elif interval == "1h":
-            data = yf.Ticker(ticker.strip()).history(interval='1h', period='50d')
-        elif interval == "15m":
-            data = yf.Ticker(ticker.strip()).history(interval='15m', period='40d')
-
+            data = yf.Ticker(ticker.strip()).history(interval='1d', period='90d')
         try:
             return data
         except Exception as e:
