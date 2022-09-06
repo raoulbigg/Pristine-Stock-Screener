@@ -35,7 +35,8 @@ class Screener(object):
         while 1 > 0:
             now = datetime.datetime.now()
             screen = False
-            screen = self.stockScreener()
+            if now.now().hour == 21 and now.now().minute == 10:
+                screen = self.stockScreener()
             #Write to watchlist for TradingView
             if screen:
                 with open("potential_trades.txt", mode="w") as file:
@@ -43,6 +44,7 @@ class Screener(object):
                 print('----------')
                 if self.timeframe == "1d":
                     sys.exit()
+            time.sleep(3)
 
 
     def stockScreener(self):
