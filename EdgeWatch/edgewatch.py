@@ -25,7 +25,7 @@ class MarketOverview(object):
 
 
 
-class Screener(object):
+class Screener(object): 
     def __init__(self, tickers,timeframe):
 
         self.tickers = tickers
@@ -39,7 +39,7 @@ class Screener(object):
                 screen = self.stockScreener()
             #Write to watchlist for TradingView
             if screen:
-                with open("potential_trades.txt", mode="w") as file:
+                with open("/var/www/html/potential_trades.txt", mode="w") as file:
                     file.write(", ".join(screen))
                 print('----------')
                 if self.timeframe == "1d":
