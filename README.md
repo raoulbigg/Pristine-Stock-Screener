@@ -16,8 +16,8 @@ The filters that the screener scans for are:
 
 ##### Law of Picture Of Power (POP):
 	Description: 
-	 +POP = 20MA > 50MA AND rising 20ma
-	 -POP = 20MA < 50MA AND declining 20ma
+	 +POP = 20MA > 40MA AND rising 20ma
+	 -POP = 20MA < 40MA AND declining 20ma
 
 ##### Price action:
 	Description: 
