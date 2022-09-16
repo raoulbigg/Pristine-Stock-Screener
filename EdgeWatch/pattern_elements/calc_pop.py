@@ -1,11 +1,11 @@
 def calc_picture_of_power(data):
 	close = data.iloc[0]["Close"]
 	short_sma = data.iloc[0]["SMA_20"]
-	medium_sma = data.iloc[0]["SMA_50"]
+	medium_sma = data.iloc[0]["SMA_40"]
 
 	close1 = data.iloc[1]["Close"]
 	short_sma1 = data.iloc[1]["SMA_20"]
-	medium_sma1 = data.iloc[1]["SMA_50"]
+	medium_sma1 = data.iloc[1]["SMA_40"]
 	
 
 	#calc +POP
