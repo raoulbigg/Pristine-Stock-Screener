@@ -22,4 +22,6 @@ The filters that the screener scans for are:
 ##### Price action:
 	Description: 
 	 Looks if current bar is an engulfing bar
+	 Look if current bar > 20ma
+	 Look if current bar's close is higher than closes of last 8 bars
 
