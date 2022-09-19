@@ -14,7 +14,7 @@ def calc_picture_of_power(data):
 	if close > short_sma:
 		if sma > short_sma and short_sma > medium_sma and short_sma > short_sma1 and close / short_sma <= 1.1:
 			return "up"
-	#calc -POP (if 8ma < 20ma and 20ma is declining)
+	#calc -POP (if 8ma < 20ma and 20ma < 40ma)
 	elif close < short_sma:
 		if sma < short_sma and short_sma < medium_sma and short_sma < short_sma1 and close / short_sma <= 1.1:
 			return "down"
