@@ -2,10 +2,10 @@
 
 ###### Personal stock/forex/commodity/crypto screener that:
 
-
-- Receives **live** and **past** OHLC data for stocks using Yahoo yfinance lib.
-- calculates moving averages, bars position and moving average distance for each stock. 
-- Generates a watchlist.txt file to import in TradingView
+- Gets all US stocks from Etoro
+- Receives **live** and **past** OHLC data for Etoro stocks using Yahoo yfinance lib.
+- Calculates moving averages, bars position and moving average distance for each stock. 
+- Generates a potential_trades.txt with symbols if below criteria are met (Can be imported in TradingView)
 
 The filters that the screener scans for are: 
 
@@ -16,12 +16,12 @@ The filters that the screener scans for are:
 
 ##### Law of Picture Of Power (POP):
 	Description: 
-	 +POP = 20MA > 40MA AND rising 20ma
-	 -POP = 20MA < 40MA AND declining 20ma
+	 +POP = 8MA > 20MA and 20MA > 40MA AND rising 20ma
+	 -POP = 8MA < 20MA and 20MA < 40MA AND delcining 20ma
 
 ##### Price action:
 	Description: 
 	 Looks if current bar is an engulfing bar
 	 Look if current bar > 20ma
-	 Look if current bar's close is higher than closes of last 8 bars
+	 Look if current bar's close is higher than closes of last 5 bars
 
