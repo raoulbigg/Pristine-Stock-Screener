@@ -29,4 +29,7 @@ The filters that the screener scans for are:
 
 
 
-
+# How to run:
+```
+python3 screener.py
+```
