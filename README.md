@@ -2,7 +2,7 @@
 
 ###### stock/forex/commodity/crypto screener that:
 
-- Gets all US stocks from Etoro (NYSE and NASDAQ)
+- Gets all US stocks from **Etoro** (NYSE and NASDAQ)
 - Receives **live** and **past** OHLC data for Etoro stocks using Yahoo yfinance lib.
 - Calculates moving averages, bars position and moving average distance for each stock. 
 - Generates a potential_trades.txt with symbols if below criteria are met (Can be imported in TradingView)
