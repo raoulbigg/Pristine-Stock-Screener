@@ -1,6 +1,6 @@
 # Etoro-Screener
 
-###### Personal stock/forex/commodity/crypto screener that:
+###### stock/forex/commodity/crypto screener that:
 
 - Gets all US stocks from Etoro (NYSE and NASDAQ)
 - Receives **live** and **past** OHLC data for Etoro stocks using Yahoo yfinance lib.
