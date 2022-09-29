@@ -1,5 +1,5 @@
-from EdgeWatch.edgewatch import *
-from EdgeWatch.marketoverview.symbols import *
+from EtoroScreener.etoroscreener import *
+from EtoroScreener.marketoverview.symbols import *
 
 #Stock market overview
 Marketoverview = MarketOverview().todays_markets_overview()

@@ -1,11 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import sys
-from EdgeWatch.marketoverview import get_stocks_day_performance
-from EdgeWatch.ohlc.fetch_ohlc import StockData
-from EdgeWatch.pattern_elements.calculate_simplemas import *
-from EdgeWatch.pattern_elements.calc_pop import *
-from EdgeWatch.pattern_elements.calculate_priceaction import *
+from EtoroScreener.marketoverview import get_stocks_day_performance
+from EtoroScreener.ohlc.fetch_ohlc import StockData
+from EtoroScreener.pattern_elements.calculate_simplemas import *
+from EtoroScreener.pattern_elements.calc_pop import *
+from EtoroScreener.pattern_elements.calculate_priceaction import *
 import datetime
 import time
 import json
