@@ -24,27 +24,35 @@ class MarketOverview(object):
         print('''---------------------------------\n''')
 
 
-
-class Screener(object): 
-    def __init__(self, tickers,timeframe, mode):
-
+class Screener: 
+    def __init__(self, tickers,timeframe):
         self.tickers = tickers
         self.timeframe = timeframe
-        self.mode = mode
 
     def start_stock_screener(self):
         while 1 > 0:
             now = datetime.datetime.now()
             screen = False
-            #if now.now().hour == 21 and now.now().minute == 10:
-            screen = self.stockScreener()
+            #Start screener at 21:15. US markets closes at 22:00
+            if now.now().hour == 21 and now.now().minute == 15:
+                screen = self.stockScreener()
             #Write to watchlist for TradingView
             if screen:
-                with open("/var/www/html/potential_trades.txt", mode="w") as file:
-                    file.write(", ".join(screen))
+                #Tradingview max import is 1000 stocks, so splits files if 1000
+                if len(screen) > 1000:
+                    chunked_list = list()
+                    chunk_size = 900
+                    for i in range(0, len(screen), chunk_size):
+                        chunked_list.append(screen[i:i+chunk_size])                   
+                    for i in range(len(chunked_list)):
+                        with open("potential_trades"+str(i)+".txt", mode="w") as file:
+                            file.write(", ".join(chunked_list[i]))
+                else:
+                    with open("potential_trades.txt", mode="w") as file:
+                        file.write(", ".join(screen))
                 print('----------')
-                if self.timeframe == "1d":
-                    sys.exit()
+                time.sleep(60)
+
             time.sleep(3)
 
 

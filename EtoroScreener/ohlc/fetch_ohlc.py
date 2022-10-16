@@ -15,6 +15,8 @@ class StockData(object):
         data = []
         if interval == "1d":
             data = yf.Ticker(ticker.strip()).history(interval='1d', period='90d')
+        if interval == "2h":
+            data = yf.Ticker(ticker.strip()).history(interval='90m', period='40d')
         try:
             return data
         except Exception as e:

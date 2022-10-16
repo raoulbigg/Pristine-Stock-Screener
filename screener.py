@@ -5,8 +5,11 @@ from EtoroScreener.marketoverview.symbols import *
 Marketoverview = MarketOverview().todays_markets_overview()
 
 #Get all US markets on Etoro.com
-ETORO = Symbols().etoroSymbols()
-pairs = Symbols().etoroUS(ETORO)
+symbols = Symbols()
+ETOROsymbols = symbols.etoroSymbols()
+USpairs = symbols.etoroUS(ETOROsymbols)
 
-#Start screener on All mode (calculates POP and priceaction)
-screener = Screener(tickers=pairs, timeframe="1d", mode="All").start_stock_screener()
+#Start screener
+screener = Screener(tickers=USpairs, timeframe="1d").start_stock_screener()
+
+#screener takes ~14min to finish

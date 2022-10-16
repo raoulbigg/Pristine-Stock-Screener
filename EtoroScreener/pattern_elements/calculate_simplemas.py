@@ -1,9 +1,10 @@
 #Calculate the 20 and 50 simple moving average (needed for the LAW Picture of Power AND the LAW of the 20ma)
 def calc_smas(data):
+	sma_very_short = 5
 	sma = 8
 	short_sma = 20
 	medium_sma = 40
-	SMAs=[sma, short_sma, medium_sma]
+	SMAs=[sma_very_short, sma, short_sma, medium_sma]
 
 	#Calculate 20ma and 50ma based on the closing price
 	try:
