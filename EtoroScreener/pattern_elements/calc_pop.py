@@ -16,11 +16,11 @@ def calc_picture_of_power(data):
 	medium_sma1 = data.iloc[1]["SMA_40"]
 	
 
-	#calc +POP (if 20ma > 40ma)
-	if short_sma > medium_sma and close > medium_sma and low < sma_very_short:
+	#calc +POP (if r20ma > r40ma)
+	if short_sma > medium_sma and close > medium_sma and short_sma > short_sma1 and medium_sma > medium_sma1:
 		return "up"
-	#calc -POP (if 20ma < 40ma)
-	if short_sma < medium_sma and close < medium_sma and high > sma_very_short:
+	#calc -POP (if d20ma < d40ma)
+	if short_sma < medium_sma and close < medium_sma and short_sma < short_sma1 and medium_sma < medium_sma1:
 		return "down"
 
 	return

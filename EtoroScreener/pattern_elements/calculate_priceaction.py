@@ -7,7 +7,7 @@ def calc_bars_positions(data, pop, timeframe):
 
 
 	if pop == "up":
-		#CHeck if bullish engulfing
+		#Check if bullish engulfing
 		if current["Close"] > current["Open"] and current["Close"] > barTwo["Close"]:
 			#Looks at first open above engulfing bar. And look if a void is present.
 			for i in range(30):

@@ -10,22 +10,16 @@
 The filters that the screener scans for are: 
 
 ##### (STRONG TREND) Law of Picture Of Power (POP):
-	Description: 
-	 +POP = 8MA > 20MA and 20MA > 40MA AND rising 20ma
-	 -POP = 8MA < 20MA and 20MA < 40MA AND declining 20ma
+	Criteria: 
+	 +POP = rising 20sma > rising 40sma
+	 -POP = declining 20sma < declining 40sma
 
 
-##### (POTENTIAL BREAKOUT) Price action:
-	Description: 
+##### Price action:
+	Criteria: 
 	 Looks if current bar is an engulfing bar
-	 Look if current bar > 20ma
-	 Look if current bar's close is higher than closes of last 5 bars
-
-
-##### (OVERSOLD/ OVERBOUGHT) Law of 20ma:
-	Description:			
-	 The price can't stay long far from the 20ma (Only go long/ short at or near the 20ma).
-	 Price can't be far from 20ma
+	 Looks if current bar closes in a VOID 
+	 	(VOID = momentum move to the left == few to none reference points to supply or demand. Means that there is room for price to go)
 
 
 
