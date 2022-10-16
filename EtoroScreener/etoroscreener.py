@@ -70,16 +70,11 @@ class Screener:
                 #Calculate the picture of power
                 pop = calc_picture_of_power(complete_data)
                 if pop:
-                    #If mode is all then look for PA
-                    if self.mode == "All":
-                        potential_trade = calc_bars_positions(complete_data, pop, self.timeframe)
-                        if potential_trade:
-                            print("\033[1;33;40m Potential trade found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
-                            list_trades.append(ticker.strip())
-                    #If mode is MA then only calc POP
-                    elif self.mode == "movingAverages":
-                        print("\033[1;33;40m POP found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
-                        list_trades.append(ticker.strip())                        
+                    potential_trade = calc_bars_positions(complete_data, pop, self.timeframe)
+                    if potential_trade:
+                        print("\033[1;33;40m Potential trade found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
+                        list_trades.append(ticker.strip())
+                    
             except (AttributeError, IndexError, UnboundLocalError) as e:
                 pass
         return list_trades
