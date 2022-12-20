@@ -15,8 +15,9 @@ class StockData(object):
         data = []
         if interval == "1d":
             data = yf.Ticker(ticker.strip()).history(interval='1d', period='90d')
-        if interval == "2h":
-            data = yf.Ticker(ticker.strip()).history(interval='90m', period='40d')
+            #If yesterdays volume is less then 900k: pass
+            if data[::-1].iloc[1]["Volume"] < 900000:
+                pass
         try:
             return data
         except Exception as e:
