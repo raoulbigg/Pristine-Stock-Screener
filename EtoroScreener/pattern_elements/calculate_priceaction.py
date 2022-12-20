@@ -7,8 +7,10 @@ def calc_bars_positions(data, pop, timeframe):
 
 
 	if pop == "up":
-		#Check if breakout failure (2 ors)
-		if current["Close"] > current["Open"] and current["Low"] < barTwo["Low"] or current["Close"] > current["Open"] and barTwo["Close"] < barThree["Close"] and barThree["Close"] > barThree["Open"]:
+		#Check if breakout failure (3 forms of BOF)
+		if (current["Close"] > current["Open"] and current["Low"] < barTwo["Low"] or 
+			current["Close"] > current["Open"] and barTwo["Close"] < barThree["Close"] and barThree["Close"] > barThree["Open"] or 
+			current["Close"] > current["Open"] and barTwo["Low"] < barThree["Low"] and barTwo["Close"] > barThree["Low"] ):
 			#Looks at first open above engulfing bar. And look if a void is present.
 			for i in range(30):
 				if i != 0:
@@ -35,8 +37,10 @@ def calc_bars_positions(data, pop, timeframe):
 
 
 	if pop == "down":
-		#Check if breakout failure (2 ors)
-		if current["Close"] < current["Open"] and current["High"] > barTwo["High"] or current["Close"] < current["Open"] and barTwo["Close"] > barThree["Close"] and barThree["Close"] < barThree["Open"]:
+		#Check if breakout failure (3 forms of BOF)
+		if (current["Close"] < current["Open"] and current["High"] > barTwo["High"] or 
+			current["Close"] < current["Open"] and barTwo["Close"] > barThree["Close"] and barThree["Close"] < barThree["Open"] or 
+			current["Close"] < current["Open"] and barTwo["High"] > barThree["High"] and barTwo["Close"] < barThree["High"] ):
 			#Looks at first open below engulfing bar. And look if a void is present.
 			for i in range(30):
 				if i != 0:
