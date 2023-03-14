@@ -7,61 +7,55 @@ def calc_bars_positions(data, pop, timeframe):
 
 
 	if pop == "up":
-		#Check if breakout failure (3 forms of BOF)
-		if (current["Close"] > current["Open"] and current["Low"] < barTwo["Low"] or 
-			current["Close"] > current["Open"] and barTwo["Close"] < barThree["Close"] and barThree["Close"] > barThree["Open"] or 
-			current["Close"] > current["Open"] and barTwo["Low"] < barThree["Low"] and barTwo["Close"] > barThree["Low"] ):
+		#Check if bullish engulfing
+		if current["Close"] > current["Open"]:
 			#Looks at first open above engulfing bar. And look if a void is present.
 			for i in range(30):
 				if i != 0:
 					if data.iloc[i]["Open"] > current["Close"]:
 						if data.iloc[i+1]["Close"] < data.iloc[i+1]["Open"]:
-							return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
+							#Calculate 40% of bar 3
+							maxPenetration = data.iloc[i+1]["High"] - data.iloc[i+1]["Low"] * 0,4
+							#if bar2 high does not penetrate bar3 more than 40%
+							if data.iloc[i+1]["Low"] - data.iloc[i]["High"] < maxPenetration:
+								return True
 						else:
 							break
+
 			for i in range(30):
 				if i != 0:
 					if data.iloc[i]["Open"] > current["Close"]:
 						if data.iloc[i-1]["Close"] < data.iloc[i-1]["Open"]:
-							return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
-						else:
-							break
-			for i in range(30):
-				if i != 0:
-					if data.iloc[i]["Open"] < current["Close"]:
-						if data.iloc[i-1]["Close"] < data.iloc[i-1]["Open"]:
-							return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
+							maxPenetration = data.iloc[i]["High"] - data.iloc[i]["Low"] * 0,4
+							if data.iloc[i]["Low"] - data.iloc[i-1]["High"] < maxPenetration:
+								return True							
 						else:
 							break
 
 
 
 	if pop == "down":
-		#Check if breakout failure (3 forms of BOF)
-		if (current["Close"] < current["Open"] and current["High"] > barTwo["High"] or 
-			current["Close"] < current["Open"] and barTwo["Close"] > barThree["Close"] and barThree["Close"] < barThree["Open"] or 
-			current["Close"] < current["Open"] and barTwo["High"] > barThree["High"] and barTwo["Close"] < barThree["High"] ):
+		#Check if bearish engulfing
+		if current["Close"] < current["Open"]:
 			#Looks at first open below engulfing bar. And look if a void is present.
 			for i in range(30):
 				if i != 0:
 					if data.iloc[i]["Open"] < current["Close"]:
 						if data.iloc[i+1]["Close"] > data.iloc[i+1]["Open"]:
-							return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
+							#Calculate 40% of bar 3
+							maxPenetration = data.iloc[i+1]["High"] - data.iloc[i+1]["Low"] * 0,4
+							#if bar2 low does not penetrate bar3 more than 40%
+							if data.iloc[i+1]["High"] - data.iloc[i]["Low"] < maxPenetration:
+								return True
 						else:
 							break
 			for i in range(30):
 				if i != 0:
 					if data.iloc[i]["Open"] < current["Close"]:
 						if data.iloc[i-1]["Close"] > data.iloc[i-1]["Open"]:
-							return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
+							maxPenetration = data.iloc[i]["High"] - data.iloc[i]["Low"] * 0,4
+							if data.iloc[i]["High"] - data.iloc[i-1]["Low"] < maxPenetration:
+								return True
 						else:
 							break
-			for i in range(30):
-				if i != 0:
-					if data.iloc[i]["Open"] < current["Close"]:
-						if data.iloc[i-1]["Close"] > data.iloc[i-1]["Open"]:
-							return "180bar:",current["Close"], "barTwo:", barTwo["Close"]
-						else:
-							break
-
 	
