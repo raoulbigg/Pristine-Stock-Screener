@@ -3,7 +3,7 @@ def calc_smas(data):
 	sma_very_short = 5
 	sma = 8
 	short_sma = 20
-	medium_sma = 40
+	medium_sma = 50
 	SMAs=[sma_very_short, sma, short_sma, medium_sma]
 
 	#Calculate 20ma and 50ma based on the closing price
