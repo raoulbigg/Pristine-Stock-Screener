@@ -1,0 +1,56 @@
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="rela-block top-section">
+  <form class="galleryInput" action="{{ url_for('watchlist') }}" method="post">
+      list of tickers seperated by a comma: <input type="text" name="tickers"><br>
+      <input type="submit" value="Submit">
+  </form>
+    <h1>Pristine Screener</h1>
+    <h4><b>Retracement screener</b></h4>
+    <p class="by">Made by Raoul</p>
+
+  </div>
+
+  {% if mode == "screen" %}
+  <div class="rela-block tab"> 
+    <p class="tab-title">Retracement screener {{meta["timeframe"]}} timeframe. Average vol > 100k</p>
+    <div class="tab-text">{{meta["market_today"]}}<br>
+                          <hr>
+                          <b style="color:#2ecc71">{{meta["pop_up"]}}</b> stocks above 20ma 🐂<br>
+                          <b style="color:#e74c3c">{{meta["pop_down"]}}</b> stocks below 20ma 🐻<br><br>
+    </div>
+  </div>
+
+
+  <div class="graph-container">
+    <div class="row">
+      {% for image in images %}
+
+        <section class="graph">
+          <p class="ticker">{{ image.split('.')[0] }}</p>
+          {% if meta["timeframe"] == '1d'%}
+            <img src="{{ url_for('static', filename=image) }}"/>
+          {% elif meta["timeframe"] == '1h'%}
+            <img src="{{ url_for('static', filename='hourly/'+image) }}"/>
+          {% endif %}
+        </section>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if mode == "watchlist" %}
+
+    {% for image in images %}
+      <div class="gallery">
+          <img src="{{ url_for('static', filename=image) }}" width="500" height="500">
+        </a>
+        <div class="desc">{{ image.split('.')[0] }}</div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</body>
