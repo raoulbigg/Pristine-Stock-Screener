@@ -27,11 +27,15 @@ def createChart(complete_data, ticker, now, htmlLocation, timeframe):
                       width=1000, height=800,
                       showlegend=False)
 
-    fig.update_xaxes(
-        rangebreaks=[
-            dict(bounds=["sat", "mon"]) # hide weekends
-        ]
-    )   
+    if timeframe == "1h":
+        fig.update_xaxes(rangebreaks=[dict(bounds=[16, 9.5], pattern="hour"),
+                              dict(bounds=['sat', 'mon'])])       
+    else:
+        fig.update_xaxes(
+            rangebreaks=[
+                dict(bounds=["sat", "mon"]) # hide weekends
+            ]
+        )   
 
     fig.update_layout(
         plot_bgcolor='#34495e',

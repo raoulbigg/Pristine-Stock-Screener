@@ -31,11 +31,11 @@ class MarketOverview(object):
 
 
 class Screener: 
-    def __init__(self, tickers,timeframe):
+    def __init__(self, tickers, timeframe):
         self.tickers = tickers
         self.timeframe = timeframe
         self.now = datetime.datetime.now()
-        self.htmlLocation = "flaskSite/static"
+        self.htmlLocation = "/var/www/html/flaskSite/static"
         
     def start_stock_screener(self):
         screen = False
@@ -54,12 +54,11 @@ class Screener:
                 if file.endswith('.png'):
                     os.remove(self.htmlLocation+"/hourly/"+file) 
 
-        
         #Start screener
         screen = self.stockScreener()
         if screen:
             self.write_metadata(screen[0], screen[1])
-
+        print("done")
 
 
     def stockScreener(self):

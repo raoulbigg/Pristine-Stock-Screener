@@ -22,5 +22,5 @@ while 1 > 0:
 		now.now().hour == 17 and now.now().minute == 1 or
 		now.now().hour == 18 and now.now().minute == 1):
 		screener = Screener(tickers=USstocks500k, timeframe="1h").start_stock_screener()	
-	time.sleep(60)
+	time.sleep(10)
 #screener takes ~30min to finish
