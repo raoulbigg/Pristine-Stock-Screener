@@ -35,7 +35,7 @@ class Screener:
         self.tickers = tickers
         self.timeframe = timeframe
         self.now = datetime.datetime.now()
-        self.htmlLocation = "/var/www/html/flaskSite/static"
+        self.htmlLocation = "flaskSite/static"
         
     def start_stock_screener(self):
         screen = False
@@ -103,5 +103,5 @@ class Screener:
             "market_today": self.market_today
         }
          
-        with open(self.htmlLocation+"/meta.json", "w") as outfile:
+        with open((self.htmlLocation+"/meta{0}.json").format(self.timeframe), "w") as outfile:
             json.dump(dictionary, outfile)
