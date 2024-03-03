@@ -16,12 +16,12 @@ def calc_picture_of_power(data):
 	
 
 	#calc +POP
-	if close > short_sma and close > medium_sma and high > very_short_sma:
+	if close > short_sma and close > medium_sma and high > very_short_sma and short_sma > medium_sma:
 		if short_sma > short_sma2:
 			return "up"
 
 	#calc -POP
-	if close < short_sma and close < medium_sma and low < very_short_sma:
+	if close < short_sma and close < medium_sma and low < very_short_sma and short_sma < medium_sma:
 		if short_sma < short_sma2:
 			return "down"
 
