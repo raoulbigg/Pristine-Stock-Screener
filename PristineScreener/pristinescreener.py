@@ -35,7 +35,7 @@ class Screener:
         self.tickers = tickers
         self.timeframe = timeframe
         self.now = datetime.datetime.now()
-        self.htmlLocation = "flaskSite/static"
+        self.htmlLocation = "/var/www/html/flaskSite/static"
         
     def start_stock_screener(self):
         screen = False
@@ -59,6 +59,7 @@ class Screener:
         if screen:
             self.write_metadata(screen[0], screen[1])
         print("done")
+        sys.exit()
 
 
     def stockScreener(self):
