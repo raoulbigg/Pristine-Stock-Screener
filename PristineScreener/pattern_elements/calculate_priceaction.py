@@ -7,13 +7,29 @@ def calc_bars_positions(data, pop, timeframe):
 
 
 	if pop == "up":
-		#Calc retracement
-		if barOne["Close"] < barOne["Open"] and barTwo["Close"] < barTwo["Open"] and barThree["Close"] < barThree["Open"]:
+		#If 3 consecutive Lower Lows and Lower Highs
+		if barOne["Low"] < barTwo["Low"] and barTwo["Low"] < barThree["Low"] and \
+		barOne["High"] < barTwo["High"] and barTwo["High"] < barThree["High"] or \
+		current["Low"] < barOne["Low"] and barOne["Low"] < barTwo["Low"] and \
+		current["High"] < barOne["High"] and barOne["High"] < barTwo["High"]:
+			return True
+
+		#If 3 consecutive red bars
+		elif barOne["Close"] < barOne["Open"] and barTwo["Close"] < barTwo["Open"] and barThree["Close"] < barThree["Open"]:
 			return True
 
 
 	if pop == "down":
-		#Calc retracement
-		if barOne["Close"] > barOne["Open"] and barTwo["Close"] > barTwo["Open"] and barThree["Close"] > barThree["Open"]:
+		#If 3 consecutive Higher Lows and Higher Highs
+		if barOne["Low"] > barTwo["Low"] and barTwo["Low"] > barThree["Low"] and \
+		barOne["High"] > barTwo["High"] and barTwo["High"] > barThree["High"] or \
+		current["Low"] > barOne["Low"] and barOne["Low"] > barTwo["Low"] and \
+		current["High"] > barOne["High"] and barOne["High"] > barTwo["High"]:
 			return True
 
+		#If 3 consecutive red bars
+		elif barOne["Close"] > barOne["Open"] and barTwo["Close"] > barTwo["Open"] and barThree["Close"] > barThree["Open"]:
+			return True
+
+
+#TO-DO: calculate 3 consecutive lower lows and lower highs
