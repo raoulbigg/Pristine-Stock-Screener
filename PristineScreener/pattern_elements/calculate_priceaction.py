@@ -7,29 +7,29 @@ def calc_bars_positions(data, pop, timeframe):
 
 
 	if pop == "up":
-		#If 3 consecutive Lower Lows and Lower Highs
-		if barOne["Low"] < barTwo["Low"] and barTwo["Low"] < barThree["Low"] and \
-		barOne["High"] < barTwo["High"] and barTwo["High"] < barThree["High"] or \
-		current["Low"] < barOne["Low"] and barOne["Low"] < barTwo["Low"] and \
-		current["High"] < barOne["High"] and barOne["High"] < barTwo["High"]:
-			return True
+		'''Calcs bar one low or close beneath bar two low or close and
+		   bar two low or close beneath bar three low or close
+		'''
 
-		#If 3 consecutive red bars
-		elif barOne["Close"] < barOne["Open"] and barTwo["Close"] < barTwo["Open"] and barThree["Close"] < barThree["Open"]:
-			return True
+		if barOne["Low"] < barTwo["Low"] or barOne["Close"] < barTwo["Close"]:
+			if barTwo["Low"] < barThree["Low"] or barTwo["Close"] < barThree["Close"]:
+				return True
+
+		elif current["Low"] < barOne["Low"]:
+			if barOne["Low"] < barTwo["Low"] or barOne["Close"] < barTwo["Close"]:
+				return True
+
+
 
 
 	if pop == "down":
-		#If 3 consecutive Higher Lows and Higher Highs
-		if barOne["Low"] > barTwo["Low"] and barTwo["Low"] > barThree["Low"] and \
-		barOne["High"] > barTwo["High"] and barTwo["High"] > barThree["High"] or \
-		current["Low"] > barOne["Low"] and barOne["Low"] > barTwo["Low"] and \
-		current["High"] > barOne["High"] and barOne["High"] > barTwo["High"]:
-			return True
+		'''Calcs bar one high or close above bar two high or close and
+		   bar two high or close above bar three high or close
+		'''
+		if barOne["High"] > barTwo["High"] or barOne["Close"] > barTwo["Close"]:
+			if barTwo["High"] > barThree["High"] or barTwo["Close"] > barThree["Close"]:
+				return True
 
-		#If 3 consecutive red bars
-		elif barOne["Close"] > barOne["Open"] and barTwo["Close"] > barTwo["Open"] and barThree["Close"] > barThree["Open"]:
-			return True
-
-
-#TO-DO: calculate 3 consecutive lower lows and lower highs
+		elif current["High"] < barOne["High"]:
+			if barOne["High"] > barTwo["High"] or barOne["Close"] > barTwo["Close"]:
+				return True
