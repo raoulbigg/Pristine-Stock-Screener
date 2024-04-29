@@ -58,8 +58,6 @@ class Screener:
         screen = self.stockScreener()
         if screen:
             self.write_metadata(screen[0], screen[1])
-        print("done")
-        sys.exit()
 
 
     def stockScreener(self):
