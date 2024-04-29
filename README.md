@@ -2,13 +2,13 @@
 
 ###### stock screener that:
 
-- Gets all US stocks (NYSE and NASDAQ)
+- Gets all US stocks (NYSE and NASDAQ).
 - Receives **live** and **past** OHLC data for stocks using Yahoo yfinance lib.
 - Calculates moving averages(20ma & 50ma) and bars position.
-- Calculates if a retracement is present (LL's or 2-3 consecutive red bars)
+- Calculates if a retracement is present (LL's or 2-3 consecutive red bars).
 - Calculates if prices if above a rising 20ma & 50ma. 
-- Plots candlestick graphs using plotly
-- Places the graphs in a Flask application
+- Plots candlestick graphs using plotly.
+- Places the graphs in a Flask application.
 
 Screenshots of flask site after run of screener.py:
 ![alt tag](https://github.com/raoulbigg/Pristine-Stock-Screener/blob/master/flask-screenshot.png)
