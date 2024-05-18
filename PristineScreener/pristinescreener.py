@@ -20,7 +20,7 @@ class MarketOverview(object):
         #Calls the get_stock_gainers and losers for the marketoverview
         #stocks_gainers = get_stocks_day_performance.get_stock_gainers()
         #stocks_losers = get_stocks_day_performance.get_stock_losers()
-        market_today = get_stocks_day_performance.getMarketInfo()
+        market_today = datetime.today().strftime('%d-%m-%y')
         ##Print columns with the market overview
         #print('''\n\033[1;36;40m Market overview: \033[0m\n-------------\n''')
         #print("Stocks:")
