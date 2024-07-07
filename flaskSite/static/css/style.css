@@ -1,11 +1,4 @@
-* {
-  box-sizing: border-box;
-  transition: 0.35s ease;
-}
-.rela-block {
-  display: block;
-  position: relative;
-}
+
 p.light {
   color: #727272;
 }
@@ -38,13 +31,11 @@ h4 {
   position: relative;
   font-weight: bold;
   margin-left:55px;
-  top:-10px;
   font-size: 12px;
   letter-spacing: 6px;
   font-weight: 100;
   line-height: 20px;
   text-transform: uppercase;
-  margin-bottom: 15px;  
 }
 
 body {
@@ -105,11 +96,6 @@ hr {
   float:right;
 }
 
-.graph {
-  text-align: center;
-  height: 800px;
-  width: 100%;
-}
 
 .ticker {
   position: relative;
@@ -118,10 +104,6 @@ hr {
 }
 
 
-div.gallery {
-  margin: 5px;
-  float: left;
-}
 
 div.desc {
   position: relative;
@@ -131,53 +113,20 @@ div.desc {
 }
 
 
-@media only screen and (max-device-width: 480px){
-  .graph {
-    text-align: center;
-    height: 800px;
-    width: 110%;
-  }
+@media only screen and (max-width: 600px) {
 
   .tab {
-    position: relative;
-    top: -35px;
-    z-index: 10;
-    height: 220px;
-    width: 90%;
-    max-width: 1000px;
-    margin: -90px auto;
-    margin-left: 90px;
-    padding: 15px 30px;
-    background-color:#222f3e;
-    color:white;
-    border-radius: 2px;
-    box-shadow: 0px 3px 10px -1px rgba(0,0,0,0.5);
-    text-align: center;
-    font-size: 25px;
+    margin-bottom:20px;
   }
 
-  .tab-title {
-    position: relative;
-    font-size: 20px;
-    text-align: left;
-    top:-15px;
+  .chart {
+    width:100%;
+    padding-bottom:50px;
   }
 
-
-  .tab-text {
-    position: relative;
-    font-size:25px;
-    top:15px;
+  .ticker {
+    top:-50px;
+    font-size:10px;
   }
-
-
-  .top-section {
-    height: 200px;
-    width:110%;
-    color: #e0e5f5;
-    background-color: #34495e;
-    overflow: hidden;
-    margin-bottom:60px;
-  }  
 
 }
