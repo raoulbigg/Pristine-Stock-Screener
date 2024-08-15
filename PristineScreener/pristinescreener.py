@@ -45,7 +45,7 @@ class Screener:
         if self.timeframe == "1d":
             for file in os.listdir(self.htmlLocation):
                 if file.endswith('.png'):
-                    os.remove(self.htmlLocation+"/"+file) 
+                    os.remove(self.htmlLocation+"/screener/"+file) 
             #Clear stocks500k file
             open("stocks500k.txt", "w")
 
