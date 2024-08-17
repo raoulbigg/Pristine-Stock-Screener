@@ -4,8 +4,8 @@
 
 - Gets all US stocks (NYSE and NASDAQ).
 - Receives **live** and **past** OHLC data for stocks using Yahoo yfinance lib.
-- Calculates moving averages (rising 8ma & rising 20ma).
-- Calculates if price is above a rising 20ma. 
+- Calculates moving averages (rising 10sma & rising 20sma).
+- Calculates if price is above a rising 20sma. 
 - Plots candlestick graphs using plotly.
 - Places the graphs in a Flask application.
 
