@@ -35,7 +35,7 @@ class Screener:
         self.tickers = tickers
         self.timeframe = timeframe
         self.now = datetime.datetime.now()
-        self.htmlLocation = "/var/www/html/flaskSite/static"
+        self.htmlLocation = "flaskSite/static"
         
     def start_stock_screener(self):
         screen = False
@@ -45,14 +45,7 @@ class Screener:
         if self.timeframe == "1d":
             for file in os.listdir(self.htmlLocation):
                 if file.endswith('.png'):
-                    os.remove(self.htmlLocation+"/screener/"+file) 
-            #Clear stocks500k file
-            open("stocks500k.txt", "w")
-
-        if self.timeframe == "1h":
-            for file in os.listdir(self.htmlLocation+"/hourly"):
-                if file.endswith('.png'):
-                    os.remove(self.htmlLocation+"/hourly/"+file) 
+                    os.remove(self.htmlLocation+"/"+file) 
 
         #Start screener
         screen = self.stockScreener()
@@ -79,7 +72,7 @@ class Screener:
                     pops.append(pop.strip())
                     potential_trade = calc_bars_positions(complete_data, pop, self.timeframe)
                     if potential_trade:
-                        print("\033[1;33;40m Retracement found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
+                        print("\033[1;33;40m Picture Of Power found: " + ticker.strip() + " " + pop.strip() + "\033[0m")
                         list_trades.append(ticker.strip())
                         meta.append(pop.strip())
                         createChart(complete_data, ticker, self.now, self.htmlLocation, self.timeframe)

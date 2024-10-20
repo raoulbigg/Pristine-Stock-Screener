@@ -5,9 +5,25 @@
 
 <body>
   <div class="rela-block top-section">
-    <h4><b>Buy Setup/ Sell Setup creener</b></h4>
-    <p class="by">Made by Raoul</p>
+    <h4><b>Screener:</b></h4>
+    <span class="criterion-container">
+      <p style="color:#2ecc71">Bullish criterion: </p>
+      <ul>
+        <li>Close > Open</li><br>
+        <li>Close > rising 20sma</li><br>
+        <li>Rising 10sma > rising 20sma</li><br>
+        <li>Rising 20sma > rising 40sma</li><br>
+      </ul>
+      <p style="color:#e74c3c">Bearish criterion: </p>
+      <ul>
+        <li>Close < Open</li><br>
+        <li>Close < declining 20sma</li><br>
+        <li>Declining 10sma < declining 20sma</li><br>
+        <li>Declining 20sma < declining 40sma</li><br>
+      </ul> 
+    </span>
   </div>
+
 
   {% if mode == "screen" %}
   <div class="rela-block tab"> 
